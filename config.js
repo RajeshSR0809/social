@@ -5,6 +5,4 @@ const config = {
     mongoURI: process.env.MONGO_URI || process.env.MONGO_HOST || "mongodb://127.0.0.1:27017/social"
 }
 
-module.exports = {
-    config
-};
+export default config;
