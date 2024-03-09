@@ -1,4 +1,5 @@
 import mongoose, { Schema, model }  from "mongoose";
+import crypto from "node:crypto";
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -37,10 +38,31 @@ const UserSchema = new mongoose.Schema({
 
 
 UserSchema.virtual("password")
-.set((password) => {
-    console.log(value);
+.set(function(password) {
     this._password = password;
+    this.salt = this.makeSalt();
+    this.hashed_password = this.encryptPassword(password);
+    console.log(this)
 })
+.get(function() {
+    return this._password;
+});
+
+UserSchema.methods = {
+    encryptPassword: function(password){
+        try {
+            if(!password) return "";
+            else {
+                return crypto.createHmac("sha1", this.salt).update(password).digest("hex")
+            }
+        } catch (error) {
+            return "";
+        }
+    },
+    makeSalt: function(){
+        return Math.round((new Date().valueOf() * Math.random())) + '';
+    } 
+}
 
 
 const UserModel = new model("User", UserSchema);

@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import compress from "compression";
 import helmet from "helmet";
+import UM from "./controllers/user.controller.js";
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(helmet())
 app.use(cors())
 
 
+
+UM.save();
+console.log(UM);
 
 app.use((err, req, res, next) => {
     if(err.name == "UnauthorizedError"){
