@@ -1,14 +1,17 @@
-import mongoose from "mongoose";
-import config from "./config.js";
+import { mongoose  } from "mongoose";
+import config from "./config";
 import app from "./express.js";
 
 
 console.log(config.mongoURI)
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.mongoURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
-mongoose.connection.on("error", () => {
-    throw new Error(`unable to connect to database: ${config.mongoURI}`);
+mongoose.connect(config.mongoURI, { useUnifiedTopology: true });
+mongoose.connection.on("error", (error) => {
+    if(error){
+        console.log("error", error);
+    }
+    //throw new Error(`unable to connect to database: ${config.mongoURI}`);
 });
 
 
