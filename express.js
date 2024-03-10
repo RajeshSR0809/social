@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import compress from "compression";
 import helmet from "helmet";
 
+import userRouters from "./routes/user.router.js";
+
 const app = express();
 
 
@@ -15,6 +17,9 @@ app.use(compress())
 app.use(helmet())
 app.use(cors())
 
+
+
+app.use("/api/user", userRouters)
 
 app.use((err, req, res, next) => {
     if(err.name == "UnauthorizedError"){

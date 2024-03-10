@@ -16,7 +16,9 @@
   },
   "homepage": "https://github.com/shamahoque/mern-social",
   "main": "./dist/server.generated.js",
-  "scripts": {},
+  "scripts": {
+    "development": "nodemon ./server.js"
+  },
   "devDependencies": {
     "nodemon": "^3.1.0"
   },
