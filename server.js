@@ -3,8 +3,6 @@ import config from "./config.js";
 import app from "./express.js";
 
 
-console.log(config.mongoURI);
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoURI);
 mongoose.connection.on("error", (error) => {

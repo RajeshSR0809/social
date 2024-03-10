@@ -37,18 +37,33 @@ const UserSchema = new mongoose.Schema({
 });
 
 
-UserSchema.virtual("password")
+UserSchema
+.virtual("password")
 .set(function(password) {
     this._password = password;
     this.salt = this.makeSalt();
     this.hashed_password = this.encryptPassword(password);
-    console.log(this)
 })
-.get(function() {
+.get(function(){
     return this._password;
 });
 
+UserSchema.path("hashed_password").validate({
+    validator: function(value){
+        if(this._password && this._password.length < 6){
+            console.log(this.invalidate)
+            this.invalidate('password', 'Password must be at least 6 characters.');
+        }
+        if(this.isNew && !this._password){
+            this.invalidate('password', 'Password is required');
+        }
+    },
+});
+
 UserSchema.methods = {
+    authenticate: function(plainText){
+        return this.encryptPassword(plainText) === this.hashed_password;
+    },
     encryptPassword: function(password){
         try {
             if(!password) return "";
@@ -63,7 +78,6 @@ UserSchema.methods = {
         return Math.round((new Date().valueOf() * Math.random())) + '';
     } 
 }
-
 
 const UserModel = new model("User", UserSchema);
 export default UserModel;
