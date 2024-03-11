@@ -1,3 +1,3 @@
 *. find with projection, and also query.select --> deselect is also possible
 *. params vs query ==> user/123 vs user/?userId=123
-*. nodemon debug setup
+*. nodemon debug setup ==> runtimeExecutable becomes very important, so install nodemon globally
