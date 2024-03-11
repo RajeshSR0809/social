@@ -10,6 +10,7 @@ const getErrorMessage = (error) => {
         }
     }
     else {
+        console.log(error)
         for(let errName in error.errors){
             if(error.errors[errName].message){
                 message = error.errors[errName].message;

@@ -1,5 +1,6 @@
 import UserModel from "../models/user.model.js";
 import errorHandler from "../hepers/dbErrorHandler.js"
+import extend from "lodash/extend.js";
 
 const create = async (req, res, next) => {
     const user = new UserModel(req.body);
@@ -22,16 +23,38 @@ const list = async (req, res, next) => {
 }
 
 const read = (req, res, next) => {
-    let user = req.profile;
-    user.hashed_password = undefined
-    user.salt = undefined
-  
+    let user = _read(req);
     res.status(200).json(user);
 };
 
-const update = (req, res, next) => {};
+const update = async (req, res, next) => {
+    try {
+        let user = _update(req);
+        await user.save();
+        user = _read(req);
+        res.status(200).json(user);
+            
+    } catch (error) {
+        res.status(400).json({
+            error: errorHandler.getErrorMessage(error)
+        });
+    }
 
-const remove = (req, res, next) => {};
+};
+
+const remove = async (req, res, next) => {
+    try {
+        let user = req.profile;
+        let deletedUser =  await user.deleteOne();
+        delete deletedUser.hashed_password;
+        delete deletedUser.salt;
+        res.status(200).json(deletedUser);
+    } catch (error) {
+        res.status(400).json({
+            error: errorHandler.getErrorMessage(error)
+        })        
+    }
+};
 
 const userByID = async (req, res, next, id) => {
     try {
@@ -54,6 +77,23 @@ const userByID = async (req, res, next, id) => {
     }
 
 }
+
+
+const _read = function(req){
+    let user = req.profile;
+    user.hashed_password = undefined
+    user.salt = undefined
+    return user;
+}
+
+const _update = function(req){
+    let profile = req.profile;
+    let updateProfile = req.body;
+    let user = extend(profile, updateProfile);
+    user.update = Date.now();
+    return user;
+}
+
 
 export default {
     create,
