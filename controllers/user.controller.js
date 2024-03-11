@@ -23,6 +23,9 @@ const list = async (req, res, next) => {
 
 const read = (req, res, next) => {
     let user = req.profile;
+    user.hashed_password = undefined
+    user.salt = undefined
+  
     res.status(200).json(user);
 };
 
@@ -32,7 +35,9 @@ const remove = (req, res, next) => {};
 
 const userByID = async (req, res, next, id) => {
     try {
-        let profile = await UserModel.findById(id);
+        let profile = await UserModel.findById(id)
+        .populate("following", "_id name")
+        .populate("followers", "_id name");
         if(profile){
             req.profile = profile;
             next();
