@@ -1,20 +1,54 @@
+import UserModel from "../models/user.model.js";
+import errorHandler from "../hepers/dbErrorHandler.js"
 
-
-const create = (req, res, next) => {
-    res.status(200).json({value: "able to reach the user create controller"});
+const create = async (req, res, next) => {
+    const user = new UserModel(req.body);
+    try {
+        await user.save();
+        res.status(200).json({"message": "Successfully signed up"})
+    } catch (error) {
+        res.status(400).json({error: errorHandler.getErrorMessage(error)})
+    }
 }
 
-const list = (req, res, next) => {
-    res.status(200).json({value: "able to reach the server"});
+const list = async (req, res, next) => {
+    try {
+        let userList = await UserModel.find({}, "name email created updated");   
+        res.status(200).json(userList); 
+    } catch (error) {
+        res.status(400).json({error: errorHandler.getErrorMessage(error)})
+    }
+    
 }
 
-const read = (req, res, next) => {};
+const read = (req, res, next) => {
+    let user = req.profile;
+    res.status(200).json(user);
+};
 
 const update = (req, res, next) => {};
 
 const remove = (req, res, next) => {};
 
-const userByID = () => {}
+const userByID = async (req, res, next, id) => {
+    try {
+        let profile = await UserModel.findById(id);
+        if(profile){
+            req.profile = profile;
+            next();
+        }
+        else {
+            res.status(400).json({
+                error: "User Not Found"
+            });
+        }        
+    } catch (error) {
+        res.status(400).json({
+            error: "Not able to retrive user"
+        })
+    }
+
+}
 
 export default {
     create,

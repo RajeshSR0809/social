@@ -3,13 +3,12 @@ import userCntr from "../controllers/user.controller.js"
 let router = express.Router();
 
 
-
-router.route("/")
+router.route("/api/users")
 .get(userCntr.list)
 .post(userCntr.create);
 
 
-router.route("/:userId")
+router.route("/api/users/:userId")
 .get(userCntr.read)
 .put(userCntr.update)
 .delete(userCntr.remove)

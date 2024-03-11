@@ -19,7 +19,7 @@ app.use(cors())
 
 
 
-app.use("/api/user", userRouters)
+app.use("/", userRouters);
 
 app.use((err, req, res, next) => {
     if(err.name == "UnauthorizedError"){

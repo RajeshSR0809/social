@@ -19,4 +19,4 @@ const getErrorMessage = (error) => {
     return message;
 };
 
-export default getErrorMessage;
+export default {getErrorMessage};
