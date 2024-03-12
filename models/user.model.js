@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: "Password is required"
     },
+    salt: {
+        type: String,
+        required: "Salt is required"
+    },
     about: {
         type: String,
         trim: true

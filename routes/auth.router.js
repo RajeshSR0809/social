@@ -7,6 +7,6 @@ router.route("/api/signin")
 .post(authCntrl.signin);
 
 router.route("/api/signout")
-.post(authCntrl.signout);
+.get(authCntrl.signout);
 
 export default router;

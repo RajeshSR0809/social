@@ -1,5 +1,7 @@
 import express from "express";
-import userCntr from "../controllers/user.controller.js"
+import userCntr from "../controllers/user.controller.js";
+import authCntr from "../controllers/auth.controller.js";
+
 let router = express.Router();
 
 
@@ -9,9 +11,9 @@ router.route("/api/users")
 
 
 router.route("/api/users/:userId")
-.get(userCntr.read)
-.put(userCntr.update)
-.delete(userCntr.remove)
+.get(authCntr.requireSignin, userCntr.read)
+.put(authCntr.requireSignin, authCntr.hasAuthorization, userCntr.update)
+.delete(authCntr.requireSignin, authCntr.hasAuthorization, userCntr.remove)
 
 
 router.param("userId", userCntr.userByID)
