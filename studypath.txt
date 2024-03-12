@@ -1,5 +1,9 @@
 *. find with projection, and also query.select --> deselect is also possible
 *. params vs query ==> user/123 vs user/?userId=123
 *. nodemon debug setup ==> runtimeExecutable becomes very important, so install nodemon globally
-
 *. we can write more thwn 1 populate function on query object
+
+
+1. jwttoken --> sign by passing the data and secret
+2. express-jwt --> get the token validated by passing the secret
+3. 
