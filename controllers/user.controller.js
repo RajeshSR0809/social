@@ -1,6 +1,8 @@
 import UserModel from "../models/user.model.js";
 import errorHandler from "../hepers/dbErrorHandler.js"
 import extend from "lodash/extend.js";
+import formidable from "formidable";
+import fs from "node:fs";
 
 const create = async (req, res, next) => {
     const user = new UserModel(req.body);
@@ -27,9 +29,46 @@ const read = (req, res, next) => {
     res.status(200).json(user);
 };
 
+
+const photo  = async (req, res, next) => {
+
+    try {
+        let form = formidable({keepExtensions: true});
+        let [fields, files] = await form.parse(req);
+        let photo = files.photo[0];
+        if(photo){
+            let filePath = photo.filepath;
+            let contentType = photo.mimetype;
+            let user = req.profile;
+            let userPhoto = {
+                data: fs.readFileSync(filePath),
+                contentType: contentType
+            }
+            await UserModel.findByIdAndUpdate(user.id, { $set: { photo: userPhoto } });
+            res.status(200).json({
+                message: "Photo uploaded successfully"
+            })
+        }
+        else {
+            res.status(400).json({
+                error: "Not able to upload the photo"
+            })
+        }        
+    } catch (error) {
+        res.status(400).json({
+            error: "Not able to upload the photo"
+        })
+    }
+
+}
+
 const update = async (req, res, next) => {
     try {
         let user = _update(req);
+
+        let photo = await _fileUpdate();
+
+        console.log(photo)
         await user.save();
         user = _read(req);
         res.status(200).json(user);
@@ -101,5 +140,6 @@ export default {
     userByID,
     read,
     update,
-    remove
+    remove,
+    photo
 };

@@ -15,6 +15,9 @@ router.route("/api/users/:userId")
 .put(authCntr.requireSignin, authCntr.hasAuthorization, userCntr.update)
 .delete(authCntr.requireSignin, authCntr.hasAuthorization, userCntr.remove)
 
+router.route("/api/users/photo/:userId")
+.post(authCntr.requireSignin,authCntr.hasAuthorization, userCntr.photo)
+
 
 router.param("userId", userCntr.userByID)
 

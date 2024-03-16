@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
         trim: true
     },
     photo: {
-        type: Buffer,
+        data: Buffer,
         contentType: String
     },
     following: [ { type: mongoose.Schema.ObjectId, ref: "User"} ],

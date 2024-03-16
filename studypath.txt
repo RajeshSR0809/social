@@ -7,3 +7,8 @@
 1. jwttoken --> sign by passing the data and secret
 2. express-jwt --> get the token validated by passing the secret
 3. 
+
+
+1. for files in mongoose, use data not type
+2. formidable library
+3. use findByIdAndX
