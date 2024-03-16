@@ -9,6 +9,9 @@ router.route("/api/users")
 .get(userCntr.list)
 .post(userCntr.create);
 
+router.route("/api/users/defaultphoto")
+.get(userCntr.defaultPhoto)
+
 
 router.route("/api/users/:userId")
 .get(authCntr.requireSignin, userCntr.read)
@@ -17,6 +20,9 @@ router.route("/api/users/:userId")
 
 router.route("/api/users/photo/:userId")
 .post(authCntr.requireSignin,authCntr.hasAuthorization, userCntr.photo)
+.get(authCntr.requireSignin, authCntr.hasAuthorization, userCntr.readPhoto, userCntr.defaultPhoto)
+
+
 
 
 router.param("userId", userCntr.userByID)

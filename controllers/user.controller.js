@@ -3,6 +3,7 @@ import errorHandler from "../hepers/dbErrorHandler.js"
 import extend from "lodash/extend.js";
 import formidable from "formidable";
 import fs from "node:fs";
+import defaultProfilePic from "../assets/profile-pic.png";
 
 const create = async (req, res, next) => {
     const user = new UserModel(req.body);
@@ -117,6 +118,31 @@ const userByID = async (req, res, next, id) => {
 
 }
 
+const readPhoto = async (req, res, next) => {
+    let user = req.profile;
+
+    try {
+        if(user && user.photo && user.photo.data){
+            res.set("Content-Type", user.photo.contentType);
+            return res.send(user.photo.data);
+        }
+        else {
+            next();
+        }    
+    } catch (error) {
+        res.status(400).json({
+            error: "Not able to read the photo"
+        })
+    }
+    
+}
+
+const defaultPhoto = async (req, res, next) => {
+    let path = "\\assets\\profile-pic.png"
+    let cwd = process.cwd();
+    res.sendFile(`${cwd}${path}`);
+}
+
 
 const _read = function(req){
     let user = req.profile;
@@ -141,5 +167,7 @@ export default {
     read,
     update,
     remove,
-    photo
+    photo,
+    readPhoto,
+    defaultPhoto
 };

@@ -12,3 +12,14 @@
 1. for files in mongoose, use data not type
 2. formidable library
 3. use findByIdAndX
+
+1. set the content type in express
+2. res.send in express
+3. send the file from the assets
+
+
+1. reference other table object in mongoose usig ref
+2. populating multiple refs in mongoose
+    .populate("key_in_main_table", "space separated key in other table")
+    .populate("key_in_main_table", "space separated key in other table")
+3. 
