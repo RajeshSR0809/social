@@ -247,6 +247,33 @@ const removeFollwers = async (req, res, next) => {
 };
 
 
+
+const findPeople = async (req, res, next) => {
+    try {
+        let user = req.profile;
+        
+        
+        if(!user){
+            res.status(400).json({
+                error: "Failed to get the user"
+            })
+        }
+
+
+        let following = user.following;
+        following.push(user._id); 
+
+
+        let peopleToConnect = await UserModel.find({ _id: { "$nin": following } });
+
+        res.status(200).json(peopleToConnect);
+    } catch (error) {
+        res.status(400).json({
+            error: errorHandler.getErrorMessage(error)
+        })
+    }
+}
+
 export default {
     create,
     list,
@@ -260,5 +287,6 @@ export default {
     addFollowings,
     addFollwers,
     removeFollowings,
-    removeFollwers
+    removeFollwers,
+    findPeople
 };
