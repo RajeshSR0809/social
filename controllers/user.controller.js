@@ -3,7 +3,6 @@ import errorHandler from "../hepers/dbErrorHandler.js"
 import extend from "lodash/extend.js";
 import formidable from "formidable";
 import fs from "node:fs";
-import defaultProfilePic from "../assets/profile-pic.png";
 
 const create = async (req, res, next) => {
     const user = new UserModel(req.body);
@@ -69,7 +68,6 @@ const update = async (req, res, next) => {
 
         let photo = await _fileUpdate();
 
-        console.log(photo)
         await user.save();
         user = _read(req);
         res.status(200).json(user);
@@ -160,6 +158,95 @@ const _update = function(req){
 }
 
 
+const addFollowings = async(req, res, next) => {
+    try {
+        
+        let userId = req.body.userId;
+        let followId = req.body.followId;
+
+
+        await UserModel.findByIdAndUpdate(userId, { "$addToSet": { following: followId } })
+        
+        next();
+    } catch (error) {
+        
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(error)
+        });
+
+    }
+};
+
+const addFollwers = async (req, res, next) => {
+    
+    try {
+        let followingId = req.body.followId;
+        let userId = req.body.userId;
+    
+    
+        let result = await UserModel.findByIdAndUpdate(
+            followingId, 
+            { "$addToSet": { followers: userId } }, 
+            { new: true } 
+        )
+        .populate("following", "_id name")
+        .populate("followers", "_id name");
+        result = result.toJSON();
+    
+        delete result.hashed_password;
+        delete result.salt;
+        res.status(200).json( result );        
+    } catch (error) {
+        res.status(400).json({
+            error: "Failed to add to the follower"
+        })
+    }
+
+
+};
+
+const removeFollowings = async(req, res, next) => {
+    try {
+        let userId = req.body.userId;
+        let unfollowId = req.body.unfollowId;
+
+        await UserModel.findByIdAndUpdate(userId, { "$pull": { following: unfollowId } })
+
+        next();
+    } catch (error) {
+        res.status(400).json({
+            error: errorHandler.getErrorMessage(error)
+        })
+    }
+};
+
+const removeFollwers = async (req, res, next) => {
+
+    try {
+        let userId = req.body.userId;
+        let unfollowId = req.body.unfollowId;
+    
+        let result = await UserModel.findByIdAndUpdate(
+            unfollowId, 
+            { "$pull": { followers: userId } }, 
+            { new: true } 
+        )
+        .populate("following", "_id name")
+        .populate("followers", "_id name");
+        result = result.toJSON();
+    
+        delete result.hashed_password;
+        delete result.salt;
+        res.status(200).json( result );        
+    } catch (error) {
+        res.status(400).json({
+            error: "Failed to remove from the follower"
+        })
+    }
+
+};
+
+
 export default {
     create,
     list,
@@ -169,5 +256,9 @@ export default {
     remove,
     photo,
     readPhoto,
-    defaultPhoto
+    defaultPhoto,
+    addFollowings,
+    addFollwers,
+    removeFollowings,
+    removeFollwers
 };
