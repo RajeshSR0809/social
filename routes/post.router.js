@@ -11,10 +11,10 @@ router.route("/api/posts/like")
 router.route("/api/posts/unlike")
 .put(authController.requireSignin, postController.unlike)
 
-router.route("/api/posts/comments")
-.put(authController.requireSignin, postController.comments)
-router.route("/api/posts/uncomments")
-.put(authController.requireSignin, postController.uncomments)
+router.route("/api/posts/comment")
+.put(authController.requireSignin, postController.comment)
+router.route("/api/posts/uncomment")
+.put(authController.requireSignin, postController.uncomment)
 
 
 router.route("/api/posts/new/:userId")

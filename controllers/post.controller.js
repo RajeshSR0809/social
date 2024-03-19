@@ -183,13 +183,39 @@ const unlike = async (req, res, next) => {
 
 
 
-const comments = async (req, res, next) => {
-    let postId = req.body.postId;
-    let comment = req.body.comment
+const comment = async (req, res, next) => {
+
+    try {
+        let postId = req.body.postId;
+        let comment = req.body.comment;
+        comment.postedBy = req.body.userId;
+    
+        
+        let commentUpdt = await PostModel.findByIdAndUpdate(postId, {$addToSet : { comments: comment} }, { new: true });
+    
+        res.send(commentUpdt);        
+    } catch (error) {
+        res.status(400).json({
+            error: dbErrorHandler.getErrorMessage(error)
+        })
+    }
+
 };
 
-const uncomments = async (req, res, next) => {
+const uncomment = async (req, res, next) => {
+    let postId = req.body.postId;
+    let commentId = req.body.commentId;
 
+    try {
+        
+        let deletedCmt = await PostModel.findByIdAndUpdate(postId, { "$pull": { comments: { _id: commentId } } }, { new: true });
+
+        res.send(deletedCmt);
+    } catch (error) {
+        res.status(400).json({
+            error: dbErrorHandler.getErrorMessage(error)
+        })
+    }
 };
 
 
@@ -203,6 +229,6 @@ export default {
     remove,
     like,
     unlike,
-    comments,
-    uncomments
+    comment,
+    uncomment
 };

@@ -24,8 +24,8 @@ let PostSchema = mongoose.Schema({
         type: Date, 
         default: Date.now
     },    
-    comments: {
-        type: String,
+    comments: [{
+        text: String,
         created: { 
             type: Date, 
             default: Date.now
@@ -34,7 +34,7 @@ let PostSchema = mongoose.Schema({
             type: mongoose.Schema.ObjectId,
             ref: "User"
         }
-    }
+    }]
 });
 
 

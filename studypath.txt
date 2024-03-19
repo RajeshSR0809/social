@@ -29,5 +29,8 @@
 2. populate is very flexible, can extend to more complex cases, see posts feed
 
 1. mongoose  - can remove the document with just the model
-    post.remove();
-2.    
+    post.deleteOne();
+2.
+
+
+1. if you have Object[], when $push ed, then object will have _id by default
