@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { model } from "mongoose";
+
+
 let PostSchema = mongoose.Schema({
     text: {
         type: String,
@@ -9,13 +11,13 @@ let PostSchema = mongoose.Schema({
         contentType: String
     },
     postedBy: { 
-        _id: mongoose.Schema.ObjectId, 
-        ref: "user" 
+        type: mongoose.Schema.ObjectId, 
+        ref: "User" 
     },
     likes: [ 
         { 
-            _id: mongoose.Schema.ObjectId, 
-            ref: "user" 
+            type: mongoose.Schema.ObjectId, 
+            ref: "User" 
         } 
     ],
     created: { 
@@ -29,7 +31,7 @@ let PostSchema = mongoose.Schema({
             default: Date.now
         },
         postedBy: {
-            _id: mongoose.Schema.ObjectId,
+            type: mongoose.Schema.ObjectId,
             ref: "User"
         }
     }
@@ -38,5 +40,5 @@ let PostSchema = mongoose.Schema({
 
 
 
-let PostModel  = mongoose.Schema("Post", PostSchema)
+let PostModel  = model("Post", PostSchema)
 export default PostModel;

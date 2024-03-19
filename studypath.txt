@@ -23,3 +23,11 @@
     .populate("key_in_main_table", "space separated key in other table")
     .populate("key_in_main_table", "space separated key in other table")
 3. 
+
+
+1. use $addToSet, $push , $removeSet, $pull
+2. populate is very flexible, can extend to more complex cases, see posts feed
+
+1. mongoose  - can remove the document with just the model
+    post.remove();
+2.    
