@@ -1,0 +1,848 @@
+{
+	"info": {
+		"_postman_id": "b8f0a1b6-bc6c-4ddc-8a96-dd30fe362b29",
+		"name": "social",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12718110",
+		"_collection_link": "https://cloudy-firefly-365521.postman.co/workspace/backend-cloud-cohort~6c465f73-ff38-4bb8-a959-9fd0cee5eba8/collection/12718110-b8f0a1b6-bc6c-4ddc-8a96-dd30fe362b29?action=share&source=collection_link&creator=12718110"
+	},
+	"item": [
+		{
+			"name": "user - create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Vikram\",\r\n    \"email\": \"vikram99@gmail.com\",\r\n    \"password\": \"vikram99\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user - users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user - read user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA1OTc5OTh9.zTkvK3xnQ9LsXOTbqZTwJ7btGI_7ykZsa23DmWWOCkc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user - error user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/65eca48a54fd0a6efc65e2b2_dummy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"65eca48a54fd0a6efc65e2b2_dummy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user - update user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTAyNDYzNzF9.9IHFVpwm1-FRcEmuvyn2aqsCGTDnSEkosRD2PWiaB0o",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"RajeshSR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user - delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/65ed718b958bbe92f89d3bad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"65ed718b958bbe92f89d3bad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user - signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"rajesh99@gmail.com\",\r\n  \"password\": \"rajesh99\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user - logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/signout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"signout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photo - add photo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA1OTc5OTh9.zTkvK3xnQ9LsXOTbqZTwJ7btGI_7ykZsa23DmWWOCkc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "a",
+							"value": "43a3b-7ac62\n38883-df9b9\nd9601-7f335\na6d5b-96405\n96969-7d283\nf92f6-cfdea\ndbd6c-0836b\n3086c-d31ec\ncb283-5f489\ndae8c-9c933\na8749-5300d\n89329-abdb3\nb28a4-c47ce\n01b65-d26f8\n52688-3638f\n674c9-78a62",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajesh S R/Desktop/disney.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/photo/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"photo",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photo - get user photo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA1OTc5OTh9.zTkvK3xnQ9LsXOTbqZTwJ7btGI_7ykZsa23DmWWOCkc",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/users/photo/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"photo",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photo - get default photo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA1OTc5OTh9.zTkvK3xnQ9LsXOTbqZTwJ7btGI_7ykZsa23DmWWOCkc",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/users/defaultphoto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"defaultphoto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "follow - add following",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"65f04705fb9e57071618de24\",\r\n    \"followId\": \"65f6b8016121c246ec93381b\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/follow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"follow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "follow - remove following",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"65f04705fb9e57071618de24\",\r\n    \"unfollowId\": \"65f6b8016121c246ec93381b\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/unfollow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"unfollow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "follow - find people to follow",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"65f04705fb9e57071618de24\",\r\n    \"unfollowId\": \"65f6b8016121c246ec93381b\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/findpeople/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"findpeople",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - create post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "Hey there, just done with my Aadhar, it is so easy to register.",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajesh S R/Pictures/Screenshots/Rajesh A S1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/new/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"new",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - list all post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "Hey there, just done with my Aadhar, it is so easy to register.",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajesh S R/Pictures/Screenshots/Rajesh A S1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/feed/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"feed",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - list all user post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "Hey there, just done with my Aadhar, it is so easy to register.",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajesh S R/Pictures/Screenshots/Rajesh A S1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/by/65f04705fb9e57071618de24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"by",
+						"65f04705fb9e57071618de24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - get photo by post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "Hey there, just done with my Aadhar, it is so easy to register.",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajesh S R/Pictures/Screenshots/Rajesh A S1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/photo/65f980de9e3ebc46dfddc16d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"photo",
+						"65f980de9e3ebc46dfddc16d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - delete post",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "Hey there, just done with my Aadhar, it is so easy to register.",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Rajesh S R/Pictures/Screenshots/Rajesh A S1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/65f9800ec8fbd07c99da6a46",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"65f9800ec8fbd07c99da6a46"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - like",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postId\": \"65f9b4e3ad1303f0caaf07aa\",\r\n    \"userId\":  \"65f04705fb9e57071618de24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/like",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - unlike",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postId\": \"65f9b4e3ad1303f0caaf07aa\",\r\n    \"userId\":  \"65f04705fb9e57071618de24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/unlike",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"unlike"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - comment, add",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postId\": \"65f9b4e3ad1303f0caaf07aa\",\r\n    \"userId\": \"65f04705fb9e57071618de24\",\r\n    \"comment\": {\r\n        \"text\": \"Ya it is really easy\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post - comment, remove",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWYwNDcwNWZiOWU1NzA3MTYxOGRlMjQiLCJpYXQiOjE3MTA2Njc4Mjd9.uz4vcsOb1wRw8JRBgjb5b2Wq5JdMEPFopl2MiD4DpoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postId\": \"65f9b4e3ad1303f0caaf07aa\",\r\n    \"commentId\": \"65f9bc024c0e82369625d53e\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/uncomment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"uncomment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
